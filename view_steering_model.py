@@ -5,6 +5,7 @@ import numpy as np
 import h5py
 import pygame
 import json
+from numpy import interp
 from keras.models import model_from_json
 
 pygame.init()
@@ -42,6 +43,10 @@ rdst = \
 
 tform3_img = tf.ProjectiveTransform()
 tform3_img.estimate(np.array(rdst), np.array(rsrc))
+
+
+def remap(value):
+    return interp(value, [-25, 25], [-360, 360])
 
 def perspective_tform(x, y):
   p1, p2 = tform3_img((x,y))[0]
@@ -112,9 +117,9 @@ if __name__ == "__main__":
       print "%.2f seconds elapsed" % (i/100.0)
     img = cam['X'][log['cam1_ptr'][i]].swapaxes(0,2).swapaxes(0,1)
 
-    predicted_steers = model.predict(img[None, :, :, :].transpose(0, 3, 1, 2))[0][0]
+    predicted_steers = remap(model.predict(img[None, :, :, :].transpose(0, 3, 1, 2))[0][0])
 
-    angle_steers = log['steering_angle'][i]
+    angle_steers = remap(log['steering_angle'][i])
     speed_ms = log['speed'][i]
 
     draw_path_on(img, speed_ms, -angle_steers/10.0)
