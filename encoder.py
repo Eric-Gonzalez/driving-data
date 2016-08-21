@@ -1,7 +1,6 @@
 import csv
 
 import h5py
-import itertools
 import numpy as np
 from PIL import Image
 from PIL import ImageOps
@@ -38,7 +37,7 @@ if __name__ == '__main__':
     current_time = 0
     with open('driving_log.csv', 'rb') as driving_csv:
         reader = csv.reader(driving_csv)
-        for row in itertools.islice(reader, 0, 5):
+        for row in reader:
             array = resize_image(row[0])
             image_arrays.append(array)
 
@@ -47,7 +46,7 @@ if __name__ == '__main__':
             brake_array.append(float(row[3]))
             speed_array.append(float(row[4]))
 
-            cam1_ptr_array.append(float(reader.line_num -1))
+            cam1_ptr_array.append(float(reader.line_num - 1))
             times_array.append(float(current_time))
             current_time += 0.2
             print "Processed: " + row.__str__()
