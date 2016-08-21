@@ -63,7 +63,7 @@ def draw_path(img, path_x, path_y, color):
 def calc_curvature(v_ego, angle_steers, angle_offset=0):
   deg_to_rad = np.pi/180.
   slip_fator = 0.0014 # slip factor obtained from real data
-  steer_ratio = 15.3  # from http://www.edmunds.com/acura/ilx/2016/road-test-specs/
+  steer_ratio = 25
   wheel_base = 2.67   # from http://www.edmunds.com/acura/ilx/2016/sedan/features-specs/
 
   angle_steers_rad = (angle_steers - angle_offset) * deg_to_rad
