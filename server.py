@@ -185,13 +185,13 @@ if __name__ == "__main__":
 
   # 9 for training
   train_path = [
-    './dataset/camera/data0.h5'
+    './dataset/camera/data2.h5'
   ]
 
   # TODO Record New Validation Set
   # 2 for validation
   validation_path = [
-    './dataset/camera/data0.h5'
+    './dataset/camera/data2.h5'
   ]
 
   if args.validation:

@@ -24,8 +24,8 @@ def create_dataset(h5_set, dataset_name, array):
 
 
 if __name__ == '__main__':
-    camera_set = h5py.File("dataset/camera/data0.h5", "w")
-    log_set = h5py.File("dataset/log/data0.h5", "w")
+    camera_set = h5py.File("dataset/camera/data2.h5", "w")
+    log_set = h5py.File("dataset/log/data2.h5", "w")
     image_arrays = []
     gas_array = []
     speed_array = []
